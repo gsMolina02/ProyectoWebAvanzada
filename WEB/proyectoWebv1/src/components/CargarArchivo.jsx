@@ -1,101 +1,67 @@
 import { useState } from 'react';
-import { Container, Form, Button, Alert } from 'react-bootstrap';
+import { Container, Form, Button, Table } from 'react-bootstrap';
 
 export default function CargarArchivo() {
   const [archivo, setArchivo] = useState(null);
-  const [titulo, setTitulo] = useState('');
-  const [error, setError] = useState('');
-  const [exito, setExito] = useState(''); // ← Mensaje de éxito
-
-  const extensionesPermitidas = ['.enc', '.crypt'];
+  const [textoPrueba, setTextoPrueba] = useState('');
+  const [archivosCargados, setArchivosCargados] = useState([]);
 
   const handleArchivoChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const extension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
-      if (extensionesPermitidas.includes(extension)) {
-        setArchivo(file);
-        setError('');
-        setExito('');
-      } else {
-        setArchivo(null);
-        setError('Solo se permiten archivos encriptados (.enc, .crypt)');
-        setExito('');
-      }
-    }
+    setArchivo(e.target.files[0]);
   };
 
-  const handleTituloChange = (e) => {
-    setTitulo(e.target.value);
-  };
-
-  const handleQuitarArchivo = () => {
-    setArchivo(null);
-    setExito('');
-    setError('');
+  const handleTextoChange = (e) => {
+    setTextoPrueba(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!archivo) {
-      setError('Debes seleccionar un archivo encriptado válido.');
-      setExito('');
+      alert('Por favor selecciona un archivo');
       return;
     }
 
-    if (!titulo.trim()) {
-      setError('Debes ingresar un título para el archivo.');
-      setExito('');
+    if (!archivo.name.endsWith('.enc')) {
+      alert('Solo se permiten archivos con extensión .enc');
       return;
     }
 
-    // Simulación de carga válida
-    console.log('Archivo:', archivo);
-    console.log('Título:', titulo);
+    const nuevoArchivo = {
+      id: Date.now(),
+      titulo: textoPrueba,
+      archivo: archivo,
+      url: URL.createObjectURL(archivo)
+    };
 
-    setError('');
-    setExito('✅ Archivo y título cargados correctamente.');
+    setArchivosCargados((prev) => [...prev, nuevoArchivo]);
+    setArchivo(null);
+    setTextoPrueba('');
+  };
+
+  const eliminarArchivo = (id) => {
+    setArchivosCargados((prev) => prev.filter((a) => a.id !== id));
   };
 
   return (
-    <Container className="vh-100 d-flex flex-column justify-content-center align-items-center">
+    <Container className="vh-100 d-flex flex-column justify-content-start align-items-center py-5">
       <h2 className="mb-4 text-center">Cargar Archivo</h2>
       <Form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: '500px' }}>
-        {error && <Alert variant="danger">{error}</Alert>}
-        {exito && <Alert variant="success">{exito}</Alert>}
-
-        {/* Input de archivo */}
         <Form.Group controlId="formArchivo" className="mb-3">
-          <Form.Label>Selecciona un archivo encriptado (.enc, .crypt)</Form.Label>
-          <Form.Control
-            type="file"
-            onChange={handleArchivoChange}
-            disabled={archivo !== null}
-          />
+          <Form.Label>Selecciona un archivo (.enc)</Form.Label>
+          <Form.Control type="file" onChange={handleArchivoChange} />
           {archivo && (
-            <>
-              <div className="mt-2 text-muted">Archivo seleccionado: {archivo.name}</div>
-              <Button
-                variant="secondary"
-                size="sm"
-                className="mt-2"
-                onClick={handleQuitarArchivo}
-              >
-                Quitar archivo
-              </Button>
-            </>
+            <div className="mt-2 text-muted">Archivo seleccionado: {archivo.name}</div>
           )}
         </Form.Group>
 
-        {/* Título del archivo */}
-        <Form.Group controlId="formTituloArchivo" className="mb-3">
+        <Form.Group controlId="formTextoPrueba" className="mb-3">
           <Form.Label>Título del archivo</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Ej: Contrato encriptado"
-            value={titulo}
-            onChange={handleTituloChange}
+            placeholder="Escribe un título..."
+            value={textoPrueba}
+            onChange={handleTextoChange}
           />
         </Form.Group>
 
@@ -103,6 +69,46 @@ export default function CargarArchivo() {
           Procesar
         </Button>
       </Form>
+
+      {archivosCargados.length > 0 && (
+        <div className="mt-5 w-100">
+          <h4 className="mb-3">Archivos Cargados</h4>
+          <Table striped bordered hover responsive>
+            <thead>
+              <tr>
+                <th>Título del archivo</th>
+                <th>Archivo</th>
+                <th>Métodos</th>
+              </tr>
+            </thead>
+            <tbody>
+              {archivosCargados.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.titulo}</td>
+                  <td>{item.archivo.name}</td>
+                  <td>
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      className="me-2"
+                      onClick={() => eliminarArchivo(item.id)}
+                    >
+                      Eliminar
+                    </Button>
+                    <a
+                      href={item.url}
+                      download={item.archivo.name}
+                      className="btn btn-success btn-sm"
+                    >
+                      Descargar
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      )}
     </Container>
   );
 }
