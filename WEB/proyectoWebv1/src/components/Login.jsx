@@ -63,7 +63,6 @@ export default function Login({ onLogin }) {
               className="password-toggle"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? 'Ocultar' : 'Mostrar'}
             </button>
           </div>
 
