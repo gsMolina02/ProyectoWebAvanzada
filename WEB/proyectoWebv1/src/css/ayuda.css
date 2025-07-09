@@ -1,0 +1,35 @@
+.ayuda-container {
+  background: linear-gradient(120deg, #f1f5f9 0%, #e0e7ff 100%);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 #2563eb22;
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.ayuda-title {
+  font-weight: 800;
+  color: #2563eb;
+  letter-spacing: 1px;
+  margin-bottom: 1.2rem;
+  font-size: 1.3rem;
+}
+
+.ayuda-list {
+  padding-left: 1.2rem;
+}
+
+.ayuda-list li {
+  margin-bottom: 0.7rem;
+  font-size: 1.07rem;
+  color: #334155;
+  position: relative;
+}
+
+.ayuda-opcion {
+  color: #2563eb;
+  font-weight: 700;
+  background: #e0e7ff;
+  padding: 0.1em 0.4em;
+  border-radius: 0.5em;
+}

@@ -1,114 +1,109 @@
-import { useState } from 'react';
-import { Container, Form, Button, Table } from 'react-bootstrap';
+import React, { useState } from 'react';
+import '../css/cargarArchivo.css';
 
-export default function CargarArchivo() {
-  const [archivo, setArchivo] = useState(null);
-  const [textoPrueba, setTextoPrueba] = useState('');
-  const [archivosCargados, setArchivosCargados] = useState([]);
+export default function CargarArchivo({ onArchivoCargado }) {
+  const [archivos, setArchivos] = useState([]);
+  const [texto, setTexto] = useState('');
 
-  const handleArchivoChange = (e) => {
-    setArchivo(e.target.files[0]);
+  const handleArchivo = (e) => {
+    setArchivos(Array.from(e.target.files));
   };
 
-  const handleTextoChange = (e) => {
-    setTextoPrueba(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!archivo) {
-      alert('Por favor selecciona un archivo');
-      return;
+  const handleCargar = () => {
+    if (archivos.length > 0) {
+      archivos.forEach((archivo) => {
+        if (onArchivoCargado) {
+          onArchivoCargado(archivo, texto);
+        }
+      });
+      setArchivos([]);
+      setTexto('');
     }
-
-    if (!archivo.name.endsWith('.enc')) {
-      alert('Solo se permiten archivos con extensión .enc');
-      return;
-    }
-
-    const nuevoArchivo = {
-      id: Date.now(),
-      titulo: textoPrueba,
-      archivo: archivo,
-      url: URL.createObjectURL(archivo)
-    };
-
-    setArchivosCargados((prev) => [...prev, nuevoArchivo]);
-    setArchivo(null);
-    setTextoPrueba('');
-  };
-
-  const eliminarArchivo = (id) => {
-    setArchivosCargados((prev) => prev.filter((a) => a.id !== id));
   };
 
   return (
-    <Container className="vh-100 d-flex flex-column justify-content-start align-items-center py-5">
-      <h2 className="mb-4 text-center">Cargar Archivo</h2>
-      <Form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: '500px' }}>
-        <Form.Group controlId="formArchivo" className="mb-3">
-          <Form.Label>Selecciona un archivo (.enc)</Form.Label>
-          <Form.Control type="file" onChange={handleArchivoChange} />
-          {archivo && (
-            <div className="mt-2 text-muted">Archivo seleccionado: {archivo.name}</div>
-          )}
-        </Form.Group>
+    <div 
+      className="modern-card" 
+      style={{
+        background: 'rgba(30, 30, 30, 0.8)',
+        backdropFilter: 'blur(20px)',
+        border: '1px solid rgba(255, 255, 255, 0.15)',
+        color: 'rgba(255, 255, 255, 0.9)',
+        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)'
+      }}
+    >
+      <h4 
+        className="modern-card-title"
+        style={{
+          color: 'rgba(255, 255, 255, 0.95)',
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
+          fontWeight: '700',
+          fontSize: '1.5rem',
+          marginBottom: '1rem'
+        }}
+      >
+        Cargar Archivos
+      </h4>
 
-        <Form.Group controlId="formTextoPrueba" className="mb-3">
-          <Form.Label>Título del archivo</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Escribe un título..."
-            value={textoPrueba}
-            onChange={handleTextoChange}
-          />
-        </Form.Group>
+      <div className="file-input-container">
+        <input
+          type="file"
+          className="modern-file-input"
+          multiple
+          onChange={handleArchivo}
+          id="file-upload"
+        />
+        <label htmlFor="file-upload" className="modern-file-label">
+          <span className="file-icon">▼</span>
+          <span>Seleccionar archivos</span>
+        </label>
+      </div>
 
-        <Button variant="primary" type="submit" className="w-100">
-          Procesar
-        </Button>
-      </Form>
+      <textarea
+        className="modern-input"
+        placeholder="Texto de prueba (opcional)"
+        value={texto}
+        onChange={(e) => setTexto(e.target.value)}
+        rows="3"
+        style={{ 
+          marginTop: '1rem', 
+          resize: 'vertical',
+          background: 'rgba(60, 60, 60, 0.3)',
+          border: '2px solid rgba(255, 255, 255, 0.2)',
+          color: '#fff',
+          borderRadius: '10px'
+        }}
+      />
 
-      {archivosCargados.length > 0 && (
-        <div className="mt-5 w-100">
-          <h4 className="mb-3">Archivos Cargados</h4>
-          <Table striped bordered hover responsive>
-            <thead>
-              <tr>
-                <th>Título del archivo</th>
-                <th>Archivo</th>
-                <th>Métodos</th>
-              </tr>
-            </thead>
-            <tbody>
-              {archivosCargados.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.titulo}</td>
-                  <td>{item.archivo.name}</td>
-                  <td>
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      className="me-2"
-                      onClick={() => eliminarArchivo(item.id)}
-                    >
-                      Eliminar
-                    </Button>
-                    <a
-                      href={item.url}
-                      download={item.archivo.name}
-                      className="btn btn-success btn-sm"
-                    >
-                      Descargar
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+      <button
+        className="modern-button w-100"
+        onClick={handleCargar}
+        disabled={archivos.length === 0}
+        style={{ 
+          marginTop: '1rem',
+          background: 'linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          color: 'white',
+          borderRadius: '10px',
+          padding: '0.75rem 1.5rem'
+        }}
+      >
+        Cargar Archivos
+      </button>
+
+      {archivos.length > 0 && (
+        <div className="selected-files">
+          <div className="files-header">Archivos seleccionados:</div>
+          <div className="files-list">
+            {archivos.map((archivo, index) => (
+              <div key={index} className="file-item">
+                <span className="file-name">{archivo.name}</span>
+                <span className="file-size">({(archivo.size / 1024).toFixed(2)} KB)</span>
+              </div>
+            ))}
+          </div>
         </div>
       )}
-    </Container>
+    </div>
   );
 }

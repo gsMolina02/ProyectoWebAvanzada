@@ -1,45 +1,90 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import '../css/login.css';
 
 export default function Login({ onLogin }) {
   const [usuario, setUsuario] = useState('');
-  const [contrasena, setContrasena] = useState('');
+  const [clave, setClave] = useState('');
+  const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    // Aquí puedes validar el usuario si deseas
-    onLogin(); // ← Redirige a /bienvenida
+    setIsLoading(true);
+    setError('');
+    
+    // Simular delay de autenticación
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Datos quemados
+    if (usuario === 'admin' && clave === '1234') {
+      onLogin();
+    } else {
+      setError('Usuario o contraseña incorrectos');
+    }
+    setIsLoading(false);
   };
 
   return (
-    <div className="container vh-100 d-flex justify-content-center align-items-center">
-      <div className="card p-4 shadow" style={{ width: '100%', maxWidth: '400px' }}>
-        <h2 className="text-center mb-4">Iniciar Sesión</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="usuario" className="form-label">Usuario</label>
+    <div className="login-background">
+      <div className="login-container">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="login-header">
+            <h3 className="login-title">Bienvenido</h3>
+            <p className="login-subtitle">Inicia sesión en tu cuenta</p>
+          </div>
+          
+          <div className="form-group">
             <input
               type="text"
-              id="usuario"
-              className="form-control"
+              className={`login-input ${usuario ? 'has-value' : ''}`}
+              placeholder=" "
               value={usuario}
-              onChange={(e) => setUsuario(e.target.value)}
-              placeholder="Ingresa tu usuario"
+              onChange={e => setUsuario(e.target.value)}
+              required
+              autoComplete="username"
             />
+            <label className="login-label">Usuario</label>
           </div>
-          <div className="mb-3">
-            <label htmlFor="contrasena" className="form-label">Contraseña</label>
+
+          <div className="form-group">
             <input
-              type="password"
-              id="contrasena"
-              className="form-control"
-              value={contrasena}
-              onChange={(e) => setContrasena(e.target.value)}
-              placeholder="Ingresa tu contraseña"
+              type={showPassword ? "text" : "password"}
+              className={`login-input ${clave ? 'has-value' : ''}`}
+              placeholder=" "
+              value={clave}
+              onChange={e => setClave(e.target.value)}
+              required
+              autoComplete="current-password"
             />
+            <label className="login-label">Contraseña</label>
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? 'Ocultar' : 'Mostrar'}
+            </button>
           </div>
-          <button type="submit" className="btn btn-primary w-100">
-            Iniciar Sesión
+
+          <button 
+            className={`login-button ${isLoading ? 'loading' : ''}`} 
+            type="submit"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <span className="loading-spinner"></span>
+            ) : (
+              'Iniciar Sesión'
+            )}
           </button>
+
+          {error && (
+            <div className="error-message">
+              <span className="error-icon">!</span>
+              {error}
+            </div>
+          )}
         </form>
       </div>
     </div>
