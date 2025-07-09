@@ -30,8 +30,8 @@ export default function Login({ onLogin }) {
       <div className="login-container">
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="login-header">
-            <h3 className="login-title">Bienvenido</h3>
-            <p className="login-subtitle">Inicia sesión en tu cuenta</p>
+            <h3 className="login-title">¡Bienvenido!</h3>
+            <p className="login-subtitle">Inicia sesión con tus credenciales</p>
           </div>
           
           <div className="form-group">
