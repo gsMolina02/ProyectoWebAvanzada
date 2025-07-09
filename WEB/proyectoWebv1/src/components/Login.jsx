@@ -18,9 +18,9 @@ export default function Login({ onLogin }) {
     
     // Datos quemados
     if (usuario === 'admin' && clave === '1234') {
-      onLogin();
+      onLogin(usuario);
     } else {
-      setError('Usuario o contraseña incorrectos');
+      setError('Wallet address o private key incorrectos');
     }
     setIsLoading(false);
   };
@@ -30,8 +30,8 @@ export default function Login({ onLogin }) {
       <div className="login-container">
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="login-header">
-            <h3 className="login-title">¡Bienvenido!</h3>
-            <p className="login-subtitle">Inicia sesión con tus credenciales</p>
+            <h3 className="login-title">🔗 Conectar Wallet</h3>
+            <p className="login-subtitle">Accede a la red blockchain con tus credenciales</p>
           </div>
           
           <div className="form-group">
@@ -44,7 +44,7 @@ export default function Login({ onLogin }) {
               required
               autoComplete="username"
             />
-            <label className="login-label">Usuario</label>
+            <label className="login-label">Wallet Address</label>
           </div>
 
           <div className="form-group">
@@ -57,7 +57,7 @@ export default function Login({ onLogin }) {
               required
               autoComplete="current-password"
             />
-            <label className="login-label">Contraseña</label>
+            <label className="login-label">Private Key</label>
             <button
               type="button"
               className="password-toggle"
@@ -74,7 +74,7 @@ export default function Login({ onLogin }) {
             {isLoading ? (
               <span className="loading-spinner"></span>
             ) : (
-              'Iniciar Sesión'
+              '🔗 Conectar Wallet'
             )}
           </button>
 

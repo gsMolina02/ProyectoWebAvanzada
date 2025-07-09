@@ -1,0 +1,105 @@
+/* Blockchain Explorer Styles */
+.blockchain-info-header {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.block-count {
+  color: #60a5fa;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.listado-cadena-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.listado-cadena-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
+}
+
+.block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.block-id {
+  color: #60a5fa;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.block-timestamp {
+  color: #94a3b8;
+  font-size: 0.75rem;
+}
+
+.block-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.listado-cadena-nombre {
+  color: #e2e8f0;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.listado-cadena-texto {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-family: 'Courier New', monospace;
+}
+
+/* Mining Stats */
+.mining-stats {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.stat-row span:first-child {
+  color: #94a3b8;
+}
+
+.stat-row span:last-child {
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .block-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .block-content {
+    font-size: 0.8rem;
+  }
+}

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import '../css/navegacion.css';
 import mascota from '../img/mascota.jpg';
 
-export default function Navegacion({ vistaActual, onCambiarVista }) {
+export default function Navegacion({ vistaActual, onCambiarVista, onCerrarSesion, usuarioActual }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   const menuItems = [
     { id: 'bienvenida', label: 'Inicio', icon: '▲' },
@@ -12,6 +13,19 @@ export default function Navegacion({ vistaActual, onCambiarVista }) {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = () => {
+    setShowLogoutConfirm(true);
+  };
+
+  const confirmLogout = () => {
+    onCerrarSesion();
+    setShowLogoutConfirm(false);
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutConfirm(false);
   };
 
   return (
@@ -45,12 +59,50 @@ export default function Navegacion({ vistaActual, onCambiarVista }) {
           ))}
         </div>
 
+        <div className="navbar-actions">
+          <div className="user-info-nav">
+            <span className="user-greeting">Hola, {usuarioActual || 'Usuario'}</span>
+          </div>
+          <button className="logout-button-nav" onClick={handleLogout} title="Cerrar sesión">
+            <span className="logout-icon-nav">🔓</span>
+          </button>
+        </div>
+
         <button className="menu-toggle" onClick={toggleMenu}>
           <span className={`toggle-line ${isMenuOpen ? 'line-1-open' : ''}`}></span>
           <span className={`toggle-line ${isMenuOpen ? 'line-2-open' : ''}`}></span>
           <span className={`toggle-line ${isMenuOpen ? 'line-3-open' : ''}`}></span>
         </button>
       </div>
+
+      {/* Modal de confirmación de logout */}
+      {showLogoutConfirm && (
+        <div className="logout-modal-overlay">
+          <div className="logout-modal">
+            <div className="logout-modal-header">
+              <h5>Confirmar Cierre de Sesión</h5>
+            </div>
+            <div className="logout-modal-body">
+              <p>¿Estás seguro de que deseas cerrar sesión?</p>
+              <p className="logout-warning">Perderás todos los datos no guardados.</p>
+            </div>
+            <div className="logout-modal-actions">
+              <button 
+                className="logout-cancel-btn"
+                onClick={cancelLogout}
+              >
+                Cancelar
+              </button>
+              <button 
+                className="logout-confirm-btn"
+                onClick={confirmLogout}
+              >
+                Cerrar Sesión
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

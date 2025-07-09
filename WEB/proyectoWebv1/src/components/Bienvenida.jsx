@@ -1,35 +1,24 @@
 import { useState, useEffect } from 'react';
-import daniFoto from '../img/dani.jpg';
-import tiven from '../img/tiven.jpg';
 import '../css/bienvenida.css';
 import ListaIntegrantes from './ListaIntegrantes';
+import { PersonasData } from '../data/PersonasData';
 
-export default function Bienvenida({ onExplorarFunciones }) {
+export default function Bienvenida({ onExplorarFunciones, usuarioActual }) {
   const [openId, setOpenId] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [showWelcomeMessage, setShowWelcomeMessage] = useState(true);
 
   useEffect(() => {
     setIsVisible(true);
+    // Ocultar el mensaje de bienvenida después de 4 segundos
+    const timer = setTimeout(() => {
+      setShowWelcomeMessage(false);
+    }, 4000);
+
+    return () => clearTimeout(timer);
   }, []);
 
-  const personas = [
-    {
-      id: 'L00418754',
-      nombre: 'Daniela Tituaña',
-      foto: daniFoto,
-      email: 'dltituana1@espe.edu.ec',
-      github: 'https://github.com/DanielaLTM2206',
-      descripcion: 'Desarrolladora Frontend apasionada por React y el diseño UI.',
-    },
-    {
-      id: 'L00400869',
-      nombre: 'Gustavo Molina',
-      foto: tiven,
-      email: 'gsmolina2@espe.edu.ec',
-      github: 'https://github.com/gsMolina02',
-      descripcion: 'Ingeniero de software con interés en backend y bases de datos.',
-    },
-  ];
+  const personas = PersonasData.getPersonas();
 
   const toggleCollapse = (id) => {
     setOpenId((prev) => (prev === id ? null : id));
@@ -39,6 +28,26 @@ export default function Bienvenida({ onExplorarFunciones }) {
 
   return (
     <div className="bienvenida-background">
+      {/* Mensaje de bienvenida temporal */}
+      {showWelcomeMessage && (
+        <div className="welcome-toast">
+          <div className="welcome-toast-content">
+            <div className="welcome-icon">🎉</div>
+            <div className="welcome-text">
+              <h4>¡Sesión iniciada exitosamente!</h4>
+              <p>Bienvenido de vuelta, {usuarioActual || 'Usuario'}</p>
+            </div>
+            <button 
+              className="welcome-close" 
+              onClick={() => setShowWelcomeMessage(false)}
+              aria-label="Cerrar mensaje"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Elementos decorativos animados */}
       <div className="floating-shapes">
         <div className="shape shape-1"></div>
@@ -51,11 +60,11 @@ export default function Bienvenida({ onExplorarFunciones }) {
         {/* Header principal */}
         <div className="bienvenida-header">
           <h1 className="bienvenida-title">
-            <span className="title-line">¡Bienvenidos al</span>
-            <span className="title-highlight">Proyecto Web Avanzada!</span>
+            <span className="title-line">🔗 Bienvenidos a</span>
+            <span className="title-highlight">BlockChain Web Platform</span>
           </h1>
           <p className="bienvenida-subtitle">
-            Conoce a los integrantes del equipo y explora las funcionalidades de nuestra aplicación
+            Plataforma descentralizada para minado, transacciones y gestión de bloques
           </p>
           <div className="title-divider"></div>
         </div>
@@ -63,25 +72,25 @@ export default function Bienvenida({ onExplorarFunciones }) {
         {/* Stats Cards */}
         <div className="stats-grid">
           <div className="stat-card">
-            <div className="stat-icon">•</div>
-            <div className="stat-number">2</div>
-            <div className="stat-label">Integrantes</div>
+            <div className="stat-icon">⛓️</div>
+            <div className="stat-number">12</div>
+            <div className="stat-label">Bloques Minados</div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">•</div>
-            <div className="stat-number">100%</div>
-            <div className="stat-label">Dedicación</div>
+            <div className="stat-icon">💰</div>
+            <div className="stat-number">24.5</div>
+            <div className="stat-label">ETH Balance</div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">•</div>
-            <div className="stat-number">∞</div>
-            <div className="stat-label">Innovación</div>
+            <div className="stat-icon">🔥</div>
+            <div className="stat-number">98%</div>
+            <div className="stat-label">Hash Rate</div>
           </div>
         </div>
 
         {/* Sección del equipo */}
         <div className="team-section">
-          <h2 className="section-title">Nuestro Equipo</h2>
+          <h2 className="section-title">👥 Desarrolladores del Protocolo</h2>
           <ListaIntegrantes
             personas={personas}
             openId={openId}
@@ -90,15 +99,22 @@ export default function Bienvenida({ onExplorarFunciones }) {
           />
         </div>
 
+        {/* Mensaje de bienvenida personalizado */}
+        {showWelcomeMessage && (
+          <div className="welcome-message">
+            <p>¡Hola! Estamos emocionados de tenerte aquí. Explora y diviértete.</p>
+          </div>
+        )}
+
         {/* Call to action */}
         <div className="cta-section">
           <div className="cta-content">
-            <h3 className="cta-title">¿Listo para comenzar?</h3>
+            <h3 className="cta-title">🚀 ¿Listo para minar?</h3>
             <p className="cta-description">
-              Explora todas las funcionalidades de nuestra aplicación web
+              Accede a las herramientas de blockchain: minado, transacciones y análisis de bloques
             </p>
             <button className="cta-button" onClick={onExplorarFunciones}>
-              <span>Explorar Funciones</span>
+              <span>⛏️ Iniciar Mining</span>
               <div className="button-glow"></div>
             </button>
           </div>

@@ -466,6 +466,113 @@ html body .team-section .integrante-card h5 {
   opacity: 1;
 }
 
+/* Welcome Toast Message */
+.welcome-toast {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 1000;
+  animation: slideInRight 0.5s ease-out, fadeOut 0.5s ease-in 3.5s forwards;
+}
+
+.welcome-toast-content {
+  background: linear-gradient(135deg, #4ade80, #22c55e);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-toast-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+  pointer-events: none;
+}
+
+.welcome-icon {
+  font-size: 1.5rem;
+  animation: bounce 2s infinite;
+}
+
+.welcome-text h4 {
+  margin: 0;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.welcome-text p {
+  margin: 0.25rem 0 0 0;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.875rem;
+}
+
+.welcome-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  margin-left: auto;
+}
+
+.welcome-close:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
 /* Animations */
 @keyframes fadeInDown {
   from {
@@ -516,5 +623,24 @@ html body .team-section .integrante-card h5 {
   
   .cta-title {
     font-size: 1.5rem;
+  }
+  
+  .welcome-toast {
+    top: 80px;
+    right: 10px;
+    left: 10px;
+  }
+  
+  .welcome-toast-content {
+    min-width: auto;
+    padding: 0.875rem 1rem;
+  }
+  
+  .welcome-text h4 {
+    font-size: 0.875rem;
+  }
+  
+  .welcome-text p {
+    font-size: 0.75rem;
   }
 }

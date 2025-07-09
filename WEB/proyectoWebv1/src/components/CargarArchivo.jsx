@@ -42,7 +42,7 @@ export default function CargarArchivo({ onArchivoCargado }) {
           marginBottom: '1rem'
         }}
       >
-        Cargar Archivos
+        ⛏️ Crear Nueva Transacción
       </h4>
 
       <div className="file-input-container">

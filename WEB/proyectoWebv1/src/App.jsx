@@ -14,6 +14,7 @@ import Navegacion from './components/Navegacion';
 
 export default function App() {
   const [autenticado, setAutenticado] = useState(false);
+  const [usuarioActual, setUsuarioActual] = useState('');
   const [vistaActual, setVistaActual] = useState('bienvenida'); // 'bienvenida' o 'funciones'
   const [cadenas, setCadenas] = useState([
     { nombre: 'archivo1.txt', texto: 'Cadena de ejemplo 1' },
@@ -23,30 +24,52 @@ export default function App() {
   const [ceros, setCeros] = useState(2);
 
   if (!autenticado) {
-    return <Login onLogin={() => setAutenticado(true)} />;
+    return <Login onLogin={(usuario) => {
+      setAutenticado(true);
+      setUsuarioActual(usuario);
+    }} />;
   }
 
   const cambiarVista = (nueva) => {
     setVistaActual(nueva);
   };
 
+  const cerrarSesion = () => {
+    setAutenticado(false);
+    setUsuarioActual('');
+    setVistaActual('bienvenida');
+  };
+
   if (vistaActual === 'bienvenida') {
     return (
       <div className="app-with-navbar">
-        <Navegacion vistaActual={vistaActual} onCambiarVista={cambiarVista} />
-        <Bienvenida onExplorarFunciones={() => cambiarVista('funciones')} />
+        <Navegacion 
+          vistaActual={vistaActual} 
+          onCambiarVista={cambiarVista}
+          onCerrarSesion={cerrarSesion}
+          usuarioActual={usuarioActual}
+        />
+        <Bienvenida 
+          onExplorarFunciones={() => cambiarVista('funciones')} 
+          usuarioActual={usuarioActual}
+        />
       </div>
     );
   }
 
   return (
     <div className="app-with-navbar">
-      <Navegacion vistaActual={vistaActual} onCambiarVista={cambiarVista} />
+      <Navegacion 
+        vistaActual={vistaActual} 
+        onCambiarVista={cambiarVista}
+        onCerrarSesion={cerrarSesion}
+        usuarioActual={usuarioActual}
+      />
       <div className="funciones-background">
         <div className="container py-4" style={{ background: 'transparent', backgroundColor: 'transparent' }}>
           <div className="funciones-header">
-            <h1 className="funciones-title">Panel de Funciones</h1>
-            <p className="funciones-subtitle">Gestiona y explora todas las herramientas disponibles</p>
+            <h1 className="funciones-title">⛏️ Mining & Blockchain Tools</h1>
+            <p className="funciones-subtitle">Herramientas para minado, transacciones y análisis de blockchain</p>
           </div>
 
           <div className="row g-4" style={{ background: 'transparent', backgroundColor: 'transparent' }}>
