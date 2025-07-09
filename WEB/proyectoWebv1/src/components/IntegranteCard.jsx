@@ -56,7 +56,7 @@ export default function IntegranteCard({ persona, openId, toggleCollapse, placeh
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              background: 'rgba(45, 85, 255, 0.8)',
+              background: 'rgba(49, 49, 50, 0.8)',
               border: '1px solid rgba(255, 255, 255, 0.3)',
               color: '#ffffff',
               padding: '0.5rem 1rem',
