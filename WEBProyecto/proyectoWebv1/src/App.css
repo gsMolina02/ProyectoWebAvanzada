@@ -1,0 +1,877 @@
+/* Funciones Background */
+.funciones-background {
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #2d2d2d, #404040, #1f1f1f, #0f0f0f);
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+  padding: 6rem 0 2rem;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Header */
+.funciones-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.funciones-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.95) !important;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+.funciones-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.85) !important;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Section Separator */
+.section-separator {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  margin: 3rem 0;
+  border-radius: 1px;
+}
+
+/* Common Component Styles */
+.modern-card {
+  background: rgba(40, 40, 40, 0.3);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transition: left 0.7s;
+}
+
+.modern-card:hover::before {
+  left: 100%;
+}
+
+.modern-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.modern-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.modern-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background: rgba(60, 60, 60, 0.3);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+  backdrop-filter: blur(10px);
+}
+
+.modern-input:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(80, 80, 80, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modern-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.modern-button {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+}
+
+.modern-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.modern-button:hover::before {
+  left: 100%;
+}
+
+.modern-button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #404040 0%, #2d2d2d 100%);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.modern-button:active {
+  transform: translateY(0);
+}
+
+/* Points Display Styles */
+.points-display {
+  margin: 1.5rem 0;
+}
+
+.points-icon {
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
+}
+
+.points-number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #fff !important;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: #fff !important;
+  background-clip: unset !important;
+}
+
+.points-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.points-info {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.75rem;
+  background: rgba(60, 60, 60, 0.3);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ============================================ */
+/* LISTADO DE CADENA STYLES */
+/* ============================================ */
+.listado-cadena-container {
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: slideUp 0.6s ease-out;
+}
+
+.listado-cadena-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+}
+
+.listado-cadena-title {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.listado-cadena-title::before {
+  content: '▦';
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+}
+
+.listado-cadena-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listado-cadena-item {
+  background: rgba(50, 50, 50, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.listado-cadena-item:hover {
+  background: rgba(60, 60, 60, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
+}
+
+.listado-cadena-nombre {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.listado-cadena-texto {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-family: 'Courier New', monospace;
+  background: rgba(20, 20, 20, 0.5);
+  padding: 0.5rem;
+  border-radius: 8px;
+  border-left: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================ */
+/* AUDITORIA STYLES */
+/* ============================================ */
+.auditoria-container {
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: slideUp 0.6s ease-out 0.1s both;
+}
+
+.auditoria-title {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.auditoria-title::before {
+  content: '⬢';
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+}
+
+.auditoria-input {
+  background: rgba(50, 50, 50, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  width: 100%;
+  min-height: 50px;
+}
+
+.auditoria-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(60, 60, 60, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.auditoria-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.auditoria-btn {
+  background: linear-gradient(135deg, rgba(70, 70, 70, 0.8), rgba(50, 50, 50, 0.8));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.auditoria-btn:hover {
+  background: linear-gradient(135deg, rgba(80, 80, 80, 0.9), rgba(60, 60, 60, 0.9));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.auditoria-alert {
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.auditoria-alert.alert-success {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: rgba(34, 197, 94, 0.9);
+}
+
+.auditoria-alert.alert-danger {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: rgba(239, 68, 68, 0.9);
+}
+
+/* ============================================ */
+/* CONFIGURACION STYLES */
+/* ============================================ */
+.configuracion-container {
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: slideUp 0.6s ease-out 0.2s both;
+}
+
+.configuracion-title {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.configuracion-title::before {
+  content: '◆';
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+}
+
+.configuracion-label {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.configuracion-input {
+  background: rgba(50, 50, 50, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  min-height: 50px;
+}
+
+.configuracion-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(60, 60, 60, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================ */
+/* AYUDA STYLES */
+/* ============================================ */
+.ayuda-container {
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: slideUp 0.6s ease-out 0.3s both;
+}
+
+.ayuda-title {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.ayuda-title::before {
+  content: '?';
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.ayuda-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ayuda-list li {
+  color: rgba(255, 255, 255, 0.85) !important;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.ayuda-list li:last-child {
+  border-bottom: none;
+}
+
+.ayuda-opcion {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 600;
+  background: rgba(60, 60, 60, 0.5);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================ */
+/* MASCOTA LOGO STYLES */
+/* ============================================ */
+.mascota-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  margin: 2rem 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: slideUp 0.6s ease-out 0.4s both;
+}
+
+.mascota-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+}
+
+.mascota-img {
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.mascota-img:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.mascota-text {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================ */
+/* INTEGRANTE CARD STYLES */
+/* ============================================ */
+.integrante-card {
+  background: rgba(30, 30, 30, 0.8) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-align: center;
+}
+
+.integrante-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.integrante-card .card-title {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.integrante-card .card-text {
+  color: rgba(255, 255, 255, 0.85) !important;
+  margin-bottom: 0.5rem;
+}
+
+.integrante-card .card-text strong {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.integrante-card .btn {
+  background: linear-gradient(135deg, rgba(70, 70, 70, 0.8), rgba(50, 50, 50, 0.8)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 10px !important;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.integrante-card .btn:hover {
+  background: linear-gradient(135deg, rgba(80, 80, 80, 0.9), rgba(60, 60, 60, 0.9)) !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.integrante-card .img-hover {
+  border: 3px solid rgba(255, 255, 255, 0.2) !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.integrante-card .img-hover:hover {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  transform: scale(1.05);
+}
+
+.integrante-card .text-muted {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 0.9rem;
+}
+
+.integrante-card a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: color 0.3s ease;
+}
+
+.integrante-card a:hover {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilos para ListaIntegrantes */
+.lista-integrantes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+  animation: slideUp 0.6s ease-out 0.6s both;
+}
+
+.lista-integrantes-item {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .lista-integrantes-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Mejoras adicionales de visibilidad */
+.modern-card,
+.listado-cadena-container,
+.auditoria-container,
+.configuracion-container,
+.ayuda-container,
+.mascota-container {
+  background: rgba(30, 30, 30, 0.8) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Asegurar que todos los textos sean visibles */
+.modern-card *,
+.listado-cadena-container *,
+.auditoria-container *,
+.configuracion-container *,
+.ayuda-container *,
+.mascota-container *,
+.funciones-background * {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Títulos más visibles */
+.modern-card-title,
+.listado-cadena-title,
+.auditoria-title,
+.configuracion-title,
+.ayuda-title,
+.funciones-title {
+  color: rgba(255, 255, 255, 0.95) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Labels y texto especial */
+.configuracion-label,
+.ayuda-opcion,
+.listado-cadena-nombre {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600;
+}
+
+/* Texto normal */
+.listado-cadena-texto,
+.card-text,
+.ayuda-list li {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Mejorar contraste de botones */
+.modern-button,
+.auditoria-btn,
+.btn {
+  background: linear-gradient(135deg, rgba(80, 80, 80, 0.9), rgba(60, 60, 60, 0.9)) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+.modern-button:hover,
+.auditoria-btn:hover,
+.btn:hover {
+  background: linear-gradient(135deg, rgba(100, 100, 100, 0.9), rgba(80, 80, 80, 0.9)) !important;
+  color: white !important;
+}
+
+/* Estilos adicionales para mejorar la visibilidad de texto */
+.container, .row, .col-md-12, .col-md-6, .col-md-4 {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Forzar visibilidad en todos los elementos hijos */
+.funciones-background h1,
+.funciones-background h2,
+.funciones-background h3,
+.funciones-background h4,
+.funciones-background h5,
+.funciones-background h6 {
+  color: rgba(255, 255, 255, 0.95) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.funciones-background p,
+.funciones-background span,
+.funciones-background div,
+.funciones-background label,
+.funciones-background li {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Mejorar links */
+.funciones-background a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-decoration: none;
+}
+
+.funciones-background a:hover {
+  color: white !important;
+}
+
+/* Alertas y mensajes */
+.alert-success {
+  background: rgba(34, 197, 94, 0.2) !important;
+  color: rgba(34, 197, 94, 0.9) !important;
+  border-color: rgba(34, 197, 94, 0.3) !important;
+}
+
+.alert-danger {
+  background: rgba(239, 68, 68, 0.2) !important;
+  color: rgba(239, 68, 68, 0.9) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Strong y bold */
+.funciones-background strong,
+.funciones-background b {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 700;
+}
+
+/* Asegurar visibilidad de inputs y placeholders */
+.auditoria-input,
+.configuracion-input,
+.modern-input {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.auditoria-input::placeholder,
+.configuracion-input::placeholder,
+.modern-input::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Override Bootstrap y otros estilos que puedan interferir */
+.funciones-background .text-dark {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.funciones-background .text-muted {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* ESTILOS ESPECÍFICOS PARA TEAM SECTION Y NOMBRES */
+.team-section h5,
+.team-section .card-title,
+.integrante-card h5,
+.integrante-card .card-title {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9) !important;
+  font-size: 1.5rem !important;
+  margin-bottom: 1rem !important;
+  text-align: center !important;
+  background: none !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+}
+
+/* ============================================ */
+/* CONTENEDORES BOOTSTRAP - FONDO TRANSPARENTE */
+/* ============================================ */
+
+/* Forzar fondo transparente en contenedores Bootstrap */
+.funciones-background .container,
+.funciones-background .row,
+.funciones-background .col-md-12,
+.funciones-background .col-md-6,
+.funciones-background .col-md-4,
+.funciones-background .d-flex,
+.funciones-background .flex-fill,
+.funciones-background .carga-listado-section {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Asegurar que todos los divs dentro de funciones-background sean transparentes */
+.funciones-background div {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Excepciones para componentes que SÍ deben tener fondo */
+.funciones-background .modern-card,
+.funciones-background .listado-cadena-container,
+.funciones-background .auditoria-container,
+.funciones-background .configuracion-container,
+.funciones-background .ayuda-container,
+.funciones-background .mascota-container,
+.funciones-background .points-display {
+  background: rgba(30, 30, 30, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+
